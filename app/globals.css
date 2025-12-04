@@ -1,0 +1,287 @@
+/* app/globals.css */
+@import "tailwindcss";
+
+/* Define custom dark variant using native CSS nesting */
+@custom-variant dark (&:is(.dark *));
+
+/* Define theme variables with corrected font definitions for Tailwind 4 */
+@theme {
+  /* ... Your existing theme variables ... */
+   --color-background: var(--background);
+   --color-foreground: var(--foreground);
+   
+   /* Updated font definitions to ensure proper font loading */
+   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+   
+   /* This ensures the raw variables are accessible directly */
+   --font-geist-sans: var(--font-geist-sans);
+   --font-geist-mono: var(--font-geist-mono);
+   
+   /* ... other variable mappings ... */
+   --color-ring: var(--ring);
+   --color-input: var(--input);
+   --color-border: var(--border);
+   --color-destructive: var(--destructive);
+   --color-accent-foreground: var(--accent-foreground);
+   --color-accent: var(--accent);
+   --color-muted-foreground: var(--muted-foreground);
+   --color-muted: var(--muted);
+   --color-secondary-foreground: var(--secondary-foreground);
+   --color-secondary: var(--secondary);
+   --color-primary-foreground: var(--primary-foreground);
+   --color-primary: var(--primary);
+   --color-popover-foreground: var(--popover-foreground);
+   --color-popover: var(--popover);
+   --color-card-foreground: var(--card-foreground);
+   --color-card: var(--card);
+   /* Radius variables */
+   --radius: var(--radius);
+   --radius-sm: calc(var(--radius) - 4px);
+   --radius-md: calc(var(--radius) - 2px);
+   --radius-lg: var(--radius);
+   --radius-xl: calc(var(--radius) + 4px);
+   /* Add any other mappings needed from your :root */
+}
+
+/* Define root CSS variables for light/dark themes */
+:root {
+  /* ... Your existing light theme variables ... */
+   --radius: 0.625rem;
+   --background: oklch(1 0 0);
+   --foreground: oklch(0.145 0 0);
+   --card: oklch(1 0 0);
+   --card-foreground: oklch(0.145 0 0);
+   --popover: oklch(1 0 0);
+   --popover-foreground: oklch(0.145 0 0);
+   --primary: oklch(0.205 0 0);
+   --primary-foreground: oklch(0.985 0 0);
+   --secondary: oklch(0.97 0 0);
+   --secondary-foreground: oklch(0.205 0 0);
+   --muted: oklch(0.97 0 0);
+   --muted-foreground: oklch(0.556 0 0);
+   --accent: oklch(0.97 0 0);
+   --accent-foreground: oklch(0.205 0 0);
+   --destructive: oklch(0.577 0.245 27.325);
+   --border: oklch(0.922 0 0);
+   --input: oklch(0.922 0 0);
+   --ring: oklch(0.708 0 0);
+}
+
+.dark {
+   /* ... Your existing dark theme variables ... */
+   --background: oklch(0.145 0 0);
+   --foreground: oklch(0.985 0 0);
+   --card: oklch(0.205 0 0);
+   --card-foreground: oklch(0.985 0 0);
+   --popover: oklch(0.205 0 0);
+   --popover-foreground: oklch(0.985 0 0);
+   --primary: oklch(0.922 0 0);
+   --primary-foreground: oklch(0.205 0 0);
+   --secondary: oklch(0.269 0 0);
+   --secondary-foreground: oklch(0.985 0 0);
+   --muted: oklch(0.269 0 0);
+   --muted-foreground: oklch(0.708 0 0);
+   --accent: oklch(0.269 0 0);
+   --accent-foreground: oklch(0.985 0 0);
+   --destructive: oklch(0.704 0.191 22.216);
+   --border: oklch(1 0 0 / 10%);
+   --input: oklch(1 0 0 / 15%);
+   --ring: oklch(0.556 0 0);
+}
+
+/* Base layer styles */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  code, pre {
+    @apply font-mono;
+  }
+}
+
+/* Utilities layer */
+@layer utilities {
+  /* --- START: Shadcn UI Animations --- */
+  @keyframes enter {
+    from {
+      opacity: var(--tw-enter-opacity, 1);
+      transform: translate3d(var(--tw-enter-translate-x, 0), var(--tw-enter-translate-y, 0), 0) scale3d(var(--tw-enter-scale, 1), var(--tw-enter-scale, 1), var(--tw-enter-scale, 1)) rotate(var(--tw-enter-rotate, 0));
+    }
+  }
+  @keyframes exit {
+    to {
+      opacity: var(--tw-exit-opacity, 1);
+      transform: translate3d(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0), 0) scale3d(var(--tw-exit-scale, 1), var(--tw-exit-scale, 1), var(--tw-exit-scale, 1)) rotate(var(--tw-exit-rotate, 0));
+    }
+  }
+
+  /* Keyframes needed for Sheet, Popover, Dialog etc. */
+   @keyframes fade-in {
+       from { opacity: 0; }
+       to { opacity: 1; }
+   }
+   @keyframes fade-out {
+       from { opacity: 1; }
+       to { opacity: 0; }
+   }
+   /* Add these keyframes or update existing ones */
+@keyframes slide-in-from-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slide-out-to-right {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+@keyframes slide-in-from-bottom {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes slide-out-to-bottom {
+  from { transform: translateY(0); }
+  to { transform: translateY(100%); }
+}
+
+@keyframes slide-in-from-left {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slide-out-to-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes slide-in-from-top {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes slide-out-to-top {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100%); }
+}
+
+/* Make sure these selectors exist */
+[data-state=open][data-side=right] {
+  animation: slide-in-from-right 0.3s ease-out;
+}
+
+[data-state=closed][data-side=right] {
+  animation: slide-out-to-right 0.3s ease-in;
+}
+
+[data-state=open][data-side=bottom] {
+  animation: slide-in-from-bottom 0.3s ease-out;
+}
+
+[data-state=closed][data-side=bottom] {
+  animation: slide-out-to-bottom 0.3s ease-in;
+}
+   @keyframes zoom-in {
+       from { opacity: 0; transform: scale(0.95); }
+       to { opacity: 1; transform: scale(1); }
+   }
+   @keyframes zoom-out {
+       from { opacity: 1; transform: scale(1); }
+       to { opacity: 0; transform: scale(0.95); }
+   }
+
+  /* Keyframes for Accordion */
+  @keyframes accordion-down {
+      from { height: 0px; }
+      to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+      from { height: var(--radix-accordion-content-height); }
+      to { height: 0px; }
+  }
+
+  /* Keyframes for OTP Input Caret */
+  @keyframes caret-blink {
+    0%, 70%, 100% { opacity: 1; }
+    20%, 50% { opacity: 0; }
+  }
+
+   /* Animation Utilities */
+   .animate-in {
+       animation: enter 0.2s ease-out; /* Default duration */
+   }
+   .animate-out {
+       animation: exit 0.2s ease-in; /* Default duration */
+   }
+
+   /* Use data attributes for state-based animations (as Shadcn does) */
+    [data-state=open] .animate-in {
+       /* Example: Fade in when open */
+       --tw-enter-opacity: 0;
+       animation: fade-in 0.2s ease-out forwards;
+    }
+     [data-state=closed] .animate-out {
+        /* Example: Fade out when closed */
+        --tw-exit-opacity: 0;
+        animation: fade-out 0.2s ease-in forwards;
+    }
+
+   /* Specific slide/zoom animations often applied via data attributes in components */
+   /* Example: If a component adds data-side="right" and data-state="open" */
+    [data-state=open][data-side=right] {
+       animation: slide-in-from-right 0.3s ease-out;
+    }
+    [data-state=closed][data-side=right] {
+        animation: slide-out-to-right 0.3s ease-in;
+    }
+    [data-state=open][data-side=bottom] {
+       animation: slide-in-from-bottom 0.3s ease-out;
+    }
+    [data-state=closed][data-side=bottom] {
+        animation: slide-out-to-bottom 0.3s ease-in;
+    }
+     /* Add other side combinations (top, left) if needed */
+    [data-state=open][data-side=left] {
+       animation: slide-in-from-left 0.3s ease-out;
+    }
+    [data-state=closed][data-side=left] {
+        animation: slide-out-to-left 0.3s ease-in;
+    }
+    [data-state=open][data-side=top] {
+       animation: slide-in-from-top 0.3s ease-out;
+    }
+    [data-state=closed][data-side=top] {
+        animation: slide-out-to-top 0.3s ease-in;
+    }
+
+    /* Zoom animations (often used for Dialog/Popover) */
+     [data-state=open].zoom-in { /* Example if using a class */
+        animation: zoom-in 0.2s ease-out;
+     }
+     [data-state=closed].zoom-out {
+         animation: zoom-out 0.2s ease-in;
+     }
+
+
+  /* Accordion Animations */
+  .accordion-down { animation: accordion-down 0.2s ease-out; }
+  .accordion-up { animation: accordion-up 0.2s ease-out; }
+
+  /* OTP Caret Animation */
+  .animate-caret-blink { animation: caret-blink 1.25s ease-out infinite; }
+  /* --- END: Shadcn UI Animations --- */
+}
+
+[data-state=open][data-side=right] {
+  animation: slide-in-from-right 0.5s ease-out; /* Increase duration slightly */
+}
+
+[data-state=closed][data-side=right] {
+  animation: slide-out-to-right 0.5s ease-in; /* Increase duration slightly */
+}
