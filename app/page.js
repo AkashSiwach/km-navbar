@@ -138,7 +138,7 @@ export default function Home() {
             Keep Scrolling
           </h2>
           <p className="text-neutral-700 dark:text-neutral-300">
-            Notice how the navbar stays at the top? That's the sticky positioning in action.
+            Notice how the navbar stays at the top? That&apos;s the sticky positioning in action.
           </p>
         </div>
       </section>

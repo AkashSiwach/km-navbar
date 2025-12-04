@@ -33,10 +33,7 @@ export const NavBar = React.forwardRef(
       ? logoHoverColorClass
       : logoColorClass;
 
-    // Ensure navItemRefs is initialized if not passed (though parent should handle it)
-    if (!navItemRefs) {
-      navItemRefs = useRef([]);
-    }
+    // navItemRefs should always be provided by parent component
 
     return (
       <div
